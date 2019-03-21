@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+<title>Home</title>
+</head>
+
+<body>
+	<div class="container">
+		<table class="table table-bordered table-striped">
+
+
+			<tbody>
+				<tr th:each="tempAccount : ${accounts}">
+					
+					<td th:text="${tempAccount.id}" />
+					<td th:text="${tempAccount.userId}" />
+					<td th:text="${tempAccount.password}" />
+					<td th:text="${tempAccount.firstName}" />
+					<td th:text="${tempAccount.lastName}" />
+					<td th:text="${tempAccount.phone}" />
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+
+</html>
