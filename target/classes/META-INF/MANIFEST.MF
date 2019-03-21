@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: cap
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Eishan Jindal
+Implementation-Vendor-Id: com.xen
+Build-Jdk: 1.8.0_181
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/cap
+Created-By: Maven Integration for Eclipse
+
