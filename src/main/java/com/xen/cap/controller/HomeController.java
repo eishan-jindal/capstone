@@ -14,5 +14,4 @@ public class HomeController {
 		theModel.addAttribute("theDate", new java.util.Date());
 		return "home";
 	}
-
 }
