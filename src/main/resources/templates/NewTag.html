@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<title>Add New Tag</title>
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/footer :: footer"></div>
+<br> <div class="container col-lg-3 offset-1"><h2> New Tag</h2></div><br>
+	<div class="container col-lg-3 offset-1">
+		<form action="#" th:action="@{/tag/save}" th:object="${tag}" method="POST">
+			
+			<div class="form-group">
+				<input type="text" th:field="*{accountId}" placeholder="Account ID" class="form-control "> 
+			</div>
+			
+			<div class="form-group">
+				<input type="text" th:field="*{tagId}" placeholder="Tag ID" class="form-control">
+			</div>
+			<div class="form-group">
+				<input type="text" th:field="*{pin}" placeholder="Pin" class="form-control"> 
+			</div>
+			<div class="form-group">
+				<input type="text" th:field="*{creditLimit}" placeholder="Credit Limit" class="form-control">
+			</div>
+
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-form-label col-sm-2 pt-0">Tag Valid</legend>
+					<div class="col-sm-10">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" th:field="*{isValid}" name="TagValidOptions" id="tagRadio1" value="yes"> 
+							<label class="form-check-label" for="inlineRadio1">Yes</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" th:field="*{isValid}" name="TagValidOptions" id="tagRadio2" value="no"> 
+							<label class="form-check-label" for="inlineRadio2">No</label>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-form-label col-sm-2 pt-0">Lock Active</legend>
+					<div class="col-sm-10">
+						<div class="form-check">
+			  <input class="form-check-input" type="radio" th:field="*{isLockActive}" name="LockValidOptions" id="lockRadio1" value="yes">
+			  <label class="form-check-label" for="inlineRadio1">Yes</label>
+						</div>
+						<div class="form-check">
+			  <input class="form-check-input" type="radio" th:field="*{isLockActive}" name="LockValidOptions" id="lockRadio2" value="no">
+			  <label class="form-check-label" for="inlineRadio2">No</label>
+						</div>
+					</div>
+				</div>
+			</fieldset>			
+			
+			
+			
+			
+			
+
+			
+			
+<!-- 			<div class="form-group"> -->
+<!-- 				<input type="text" th:field="*{isValid}" placeholder="Tag Valid" class="form-control "> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<input type="text" th:field="*{isLockActive}" placeholder="Lock Active" class="form-control "> -->
+<!-- 			</div> -->
+			
+			<div class="form-group">
+				<button type="submit" class="btn btn-info">Save</button>
+			</div>
+			
+		</form>
+	</div>
+</body>
+
+
+</html>
