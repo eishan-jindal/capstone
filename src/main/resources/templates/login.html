@@ -1,20 +1,55 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Login page</title>
-        <meta charset="utf-8" />
-	</head>
-    <body>
-        <h1>Login page</h1>
-        <p>Example user: user / password</p>
-        <p th:if="${loginError}" style="font-weight: bold;color: red;">Wrong user or password</p>
-        <form th:action="@{/login}" method="post">
-            <label for="username">Username</label>:
-            <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-            <label for="password">Password</label>:
-            <input type="password" id="password" name="password" /> <br />
-            <input type="submit" value="Log in" />
-        </form>
-        <p><a href="/index" th:href="@{/index}">Back to home page</a></p>
-    </body>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<title>Login page</title>
+<meta charset="utf-8" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/footer :: footer"></div>
+	<br>
+	<div class="d-flex flex-row justify-content-center">
+		<div class="card ">
+			<h3 class="card-header text-center">Login</h3>
+			<div class="">
+
+				<div th:if="${param.error}" style="font-weight: bold; color: red;">Wrong
+					username or password</div>
+				<div class="card-body text-center">
+					<form th:action="@{/login}" method="post">
+						<div class="form-group">
+							<input class="form-control" type="text" id="username" name="username"
+								autofocus="autofocus" placeholder="username" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="password" id="password" name="password"
+								autofocus="autofocus" placeholder="password" />
+						</div>
+						<input type="submit" value="Log in" />
+					</form>
+				</div>
+				<p class="text-center">
+					<a href="/index" th:href="@{/index}">Back to home page</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

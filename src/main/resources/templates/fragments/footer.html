@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -16,6 +18,12 @@
 <body>
 <nav th:fragment="footer" class="navbar fixed-bottom navbar-dark bg-dark">
   <a class="navbar-brand" href="#" th:href="@{/}">&copy; Kyroxen</a>
+  	<div class="navbar-text nav-item"
+		sec:authorize="isAuthenticated()">
+		Logged in user: <span sec:authentication="name"></span> | Roles: <span
+			sec:authentication="principal.authorities"></span>
+		
+	</div>
 </nav>
 	
 </body>

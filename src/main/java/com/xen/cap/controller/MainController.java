@@ -1,34 +1,32 @@
 package com.xen.cap.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import com.xen.cap.dto.UserDto;
+import com.xen.cap.services.UserService;
+
+@RestController
+@RequestMapping("/api")
 public class MainController {
-	@RequestMapping("/")
-	public String root() {
-		return "redirect:/index";
-	}
+	
+    @Autowired
+    private UserService userService;
+    
+    
+	@GetMapping("/adminDetails")
+	public UserDto getUser() {
 
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
+		return userService.getUserDto("1");
 	}
+    
+	/*
+	@RequestMapping(path="/getUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserDto> getUser() {
 
-	@RequestMapping("/user/index")
-	public String userIndex() {
-		return "user/index";
-	}
+		return new ResponseEntity<UserDto>(userService.getUserDto("1"),HttpStatus.OK);
+	}*/
 
-	@RequestMapping("/login")
-	public String login() {
-		return "login";
-	}
-
-	@RequestMapping("/login-error")
-	public String loginError(Model model) {
-		model.addAttribute("loginError", true);
-		return "login";
-	}
 }

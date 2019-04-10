@@ -1,9 +1,11 @@
 package com.xen.cap.entity;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -11,31 +13,31 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name=Tag.Columns.TABLE)
-public class Tag extends BaseEntity implements Serializable {
-	public interface Columns extends BaseEntity.Columns{
-		String TABLE = "tags";
-		String TAG_ID = "tag_id";
-		String ACCOUNT_ID = "account_id";
-		String PIN = "pin";
-		String LOCK_ACTIVE = "lock_active";
-		String VALID = "valid";
-		String CREDIT_LIMIT = "credit_limit";
+public class Tag {
+	public interface Columns{
+		String TABLE = "tag";
+		String PK = "id";
 	}
-	@Column(unique = true, name = Columns.TAG_ID, length = 8, nullable = false)
-	private String tagId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(columnDefinition="INT UNSIGNED", name = Columns.PK, nullable = false)
+	private Long id;
 	
-	@Column(name = Columns.ACCOUNT_ID, nullable = false, unique = true)
-	private String accountId;
+	@Column(name = "uin", length = 8, nullable = false, unique = true)
+	private String uin;
+    
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 	
-	@Column(name=Columns.PIN, length = 4, nullable = false)
+	@Column(name="pin", length = 4, nullable = false)
 	private String pin;
 	
-	@Column(name=Columns.LOCK_ACTIVE, nullable = false)
-	private String isLockActive;
+	@Column(name="lock", nullable = false)
+	private String lock;
 	
-	@Column(name=Columns.VALID, nullable = false)
-	private String isValid;
+	@Column(name="valid", nullable = false)
+	private String valid;
 	
-	@Column(name=Columns.CREDIT_LIMIT, nullable = false)
-	private String creditLimit;
+	@Column(name="limit", nullable = false)
+	private String limit;
 }

@@ -1,39 +1,36 @@
 package com.xen.cap.entity;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.xen.cap.entity.Account.Columns;
 
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name=Payment.Columns.TABLE)
-public class Payment extends BaseEntity implements Serializable {
-	public interface Columns extends BaseEntity.Columns{
-		String TABLE = "payments";
-		String TAG_ID = "tag_id";
-		String MERCHANT_ID = "merchant_id";
-		String CUSTOMER_ID = "customer_id";
-		String AMOUNT = "amount";
-		String STATUS = "status";
+public class Payment {
+	public interface Columns{
+		String TABLE = "payment";
 	}
-	@Column(name=Columns.TAG_ID, length=8, nullable = false, unique = true)
-	private String tagId;
 	
-	@Column(name=Columns.MERCHANT_ID, nullable = false)
-	private String merchantID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition="INT UNSIGNED", nullable = false)
+    private Long id;
 	
-	@Column(name=Columns.CUSTOMER_ID, nullable = false)
+	
+	@Column(name="merchant", nullable = false)
+	private String merchant;
+	
+	@Column(name="customer", nullable = false)
 	private String customerID;	
 	
-	@Column(name=Columns.AMOUNT)
+	@Column(name="money")
 	private String amount;
-	
-	@Column(name=Columns.STATUS, nullable = false)
-	private String status;
+
 }
