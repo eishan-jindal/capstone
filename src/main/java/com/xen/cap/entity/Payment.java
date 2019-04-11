@@ -28,9 +28,9 @@ public class Payment {
 	private String merchant;
 	
 	@Column(name="customer", nullable = false)
-	private String customerID;	
+	private String customer;	
 	
 	@Column(name="money")
-	private String amount;
+	private String money;
 
 }

@@ -19,16 +19,19 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
-	public List<UserDto> getAllUserAccounts() {
-		return null;
+	public void saveUser(UserDto userDto) {
+		
+		userDao.saveUser(UserConverter.convertFromDto(userDto));
+		return;
 	}
 
-	public UserDto getUserDto(String userId) {
-		Long id = Long.parseLong(userId);
-		User user = userDao.getUserById(id);
+	public UserDto getUserDto(String username) {
+
+		User user = userDao.getUserByUsername(username);
 
 		return UserConverter.convertToDto(user);
 	}
+	
 	public UserDto getUserDtoByCredentials(String username, String password) {
 
 		User user = userDao.getUserByCredentials(username, password);
@@ -36,11 +39,4 @@ public class UserService {
 		return UserConverter.convertToDto(user);
 	}
 
-	public List<UserDto> getFbAdsDaily(String accId) {
-		return null;
-	}
-
-	public List<UserDto> getFbAdInsights(List<User> adsList) {
-		return null;
-	}
 }

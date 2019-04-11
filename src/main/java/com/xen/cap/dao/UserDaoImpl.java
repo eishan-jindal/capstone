@@ -14,14 +14,17 @@ public class UserDaoImpl implements UserDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public User getUserById(long userID) {
+	public User getUserByUsername(String username) {
 		
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// now retrieve/read from database using the primary key
-		User user = currentSession.get(User.class, userID);
+		Query theQuery = 
+				currentSession.createQuery("select u from User u where u.username = :username");
+						theQuery.setParameter("username", username);
 		
+		User user = (User) theQuery.uniqueResult();
+		if(user==null) return null;
 		return user;
 	}
 	
@@ -31,12 +34,19 @@ public class UserDaoImpl implements UserDao{
 		
 		Query theQuery = 
 				currentSession.createQuery("select u from User u where u.username = :username and u.password = :password");
-		theQuery.setParameter("username", username);
-		theQuery.setParameter("password", password);
+						theQuery.setParameter("username", username);
+						theQuery.setParameter("password", password);
 		
 		User user = (User) theQuery.uniqueResult();
 		if(user==null) return null;
 		return user;
+	}
+	
+	public void saveUser(User user) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		currentSession.saveOrUpdate(user);
 	}
 
 }
