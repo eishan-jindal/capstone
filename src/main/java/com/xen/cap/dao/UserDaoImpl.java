@@ -35,6 +35,7 @@ public class UserDaoImpl implements UserDao{
 		theQuery.setParameter("password", password);
 		
 		User user = (User) theQuery.uniqueResult();
+		if(user==null) return null;
 		return user;
 	}
 

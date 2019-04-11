@@ -9,6 +9,7 @@ public class UserConverter {
 		if(user==null) {
 			UserDto userDto = new UserDto();
 			userDto.setUsername("null user");
+			return userDto;
 		}
 		UserDto userDto = new UserDto();
 		userDto.setBalance(user.getBalance());
