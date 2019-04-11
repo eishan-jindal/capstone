@@ -29,6 +29,12 @@ public class UserService {
 
 		return UserConverter.convertToDto(user);
 	}
+	public UserDto getUserDtoByCredentials(String username, String password) {
+
+		User user = userDao.getUserByCredentials(username, password);
+
+		return UserConverter.convertToDto(user);
+	}
 
 	public List<UserDto> getFbAdsDaily(String accId) {
 		return null;
