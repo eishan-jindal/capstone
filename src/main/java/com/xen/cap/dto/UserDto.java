@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
+
 	@JsonProperty("username")
 	private String username;
 	@JsonProperty("password")
@@ -18,4 +19,5 @@ public class UserDto {
 	private String role;
 	@JsonProperty("balance")
 	private String balance;
+	
 }

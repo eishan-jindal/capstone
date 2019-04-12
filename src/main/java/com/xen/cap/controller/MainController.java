@@ -74,12 +74,11 @@ public class MainController {
 				int merchantBalance = Integer.parseInt(merchant.getBalance());
 				
 				if(transaction<=customerBalance && transaction <= limit) {
+					String newCustomerBalance = Integer.toString(customerBalance-transaction);
+					String newMerchantBalance = Integer.toString(merchantBalance+transaction);
 					
-					customer.setBalance(Integer.toString(customerBalance-transaction));
-					merchant.setBalance(Integer.toString(merchantBalance+transaction));
-					
-					userService.saveUser(customer);
-					userService.saveUser(merchant);
+					userService.saveUser(userService.getUserId(customer),newCustomerBalance, customer.getRole(), customer.getPassword(), customer.getUsername());
+					userService.saveUser(userService.getUserId(merchant), newMerchantBalance, merchant.getRole(), merchant.getPassword(), merchant.getUsername());
 					
 					return paymentService.savePayment(paymentService.createNewPayment(merchant.getUsername(), customer.getUsername(), androidDto.getMoney()));
 				}

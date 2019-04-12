@@ -1,10 +1,13 @@
 package com.xen.cap.dao;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.xen.cap.entity.User;
 
@@ -47,6 +50,29 @@ public class UserDaoImpl implements UserDao{
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		currentSession.saveOrUpdate(user);
+	}
+	
+	public void saveUser(long id, String balance, String role, String password, String username) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.openSession();
+		
+		User u = new User();
+		u.setId(id);
+		u.setBalance(balance);
+		u.setPassword(password);
+		u.setRole(role);
+		u.setUsername(username);
+		
+		Transaction tx = currentSession.beginTransaction();
+		currentSession.update(u);
+		tx.commit();
+		currentSession.close();
+		/*
+		Query theQuery = 
+				currentSession.createQuery("update User u set u.balance = :newBalance where u.username = :username");
+						theQuery.setParameter("username", userToBeUpdated.getUsername());
+						theQuery.setParameter("newBalance", userToBeUpdated.getBalance());
+		theQuery.executeUpdate();*/
 	}
 
 }

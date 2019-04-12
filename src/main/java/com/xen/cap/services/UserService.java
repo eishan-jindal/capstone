@@ -39,4 +39,15 @@ public class UserService {
 		return UserConverter.convertToDto(user);
 	}
 
+	public long getUserId(UserDto userDto) {
+		
+		User user = userDao.getUserByUsername(userDto.getUsername());
+		return user.getId();
+		
+	}
+	public void saveUser(long id, String balance, String role, String password, String username) {
+		
+		userDao.saveUser(id, balance, role, password, username);
+	}
+
 }
